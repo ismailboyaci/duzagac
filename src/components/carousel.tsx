@@ -64,7 +64,7 @@ const prevSlide = () => {
         <ChevronRight onClick={nextSlide} size={30} />
       </div>
       <div className="flex justify-center">
-        {slides.map((slide, slideIndex) => (
+        {slides.map((_slide, slideIndex) => (
           <div
             key={slideIndex}
             onClick={() => goToSlide(slideIndex)}

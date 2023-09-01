@@ -3,12 +3,12 @@ import Navbar from "@/components/navbar";
 import { Separator } from "@/components/ui/separator";
 
 const Home = () => {
-  const slides: string[] = [
-    "https://loremflickr.com/1280/720?lock=1",
-    "https://loremflickr.com/1280/720?lock=2",
-    "https://loremflickr.com/1280/720?lock=3",
-    "https://loremflickr.com/1280/720?lock=4",
-  ];
+  // const slides: string[] = [
+  //   "https://loremflickr.com/1280/720?lock=1",
+  //   "https://loremflickr.com/1280/720?lock=2",
+  //   "https://loremflickr.com/1280/720?lock=3",
+  //   "https://loremflickr.com/1280/720?lock=4",
+  // ];
   const slides1 = [
     {
       url: 'https://images.unsplash.com/photo-1531297484001-80022131f5a1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2620&q=80',
