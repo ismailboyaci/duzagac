@@ -1,4 +1,4 @@
-import Home from './pages/Home'
+
 import './styles/globals.css'
 import { ThemeProvider } from './components/theme-provider'
 import { BrowserRouter } from 'react-router-dom'
