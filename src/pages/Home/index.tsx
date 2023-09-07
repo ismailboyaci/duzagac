@@ -1,5 +1,4 @@
 import Carousel from "@/components/carousel";
-import Navbar from "@/components/navbar";
 import { Separator } from "@/components/ui/separator";
 
 const Home = () => {
