@@ -1,40 +1,51 @@
 import { Button } from "./ui/button";
-import LanguageToggle from "./languageToggle";
 import { Menu } from "lucide-react";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Sheet, SheetClose, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { ModeToggle } from "./mode-toggle";
+import { useNavigate } from "react-router-dom";
 
 const MobileSidebar = () => {
+
+  const navigate = useNavigate();
+
+  const redirectPage = (redirectParam: string) => {
+    navigate(redirectParam);
+  }
   return (
     <>
-      <div className="text-black-50 hidden md:flex">
-        <Button variant="link" className="text-black-50">
+      <div className="text-primary hidden md:flex">
+        <Button variant="link" className="text-primary" onClick={() => redirectPage('projects')}>
           PROJELER
         </Button>
-        <Button variant="link" className="text-black-50">
+        <Button variant="link" className="text-primary" onClick={() => redirectPage('about')}>
           HAKKIMIZDA
         </Button>
-        <Button variant="link" className="text-black-50">
+        <Button variant="link" className="text-primary" onClick={() => redirectPage('contact')}>
           İLETİŞİM
         </Button>
-        <LanguageToggle />
+        <ModeToggle />
+        {/* <LanguageToggle /> */}
       </div>
-      <div className="block md:hidden text-black-50">
+      <div className="block md:hidden text-primary">
         <Sheet>
           <SheetTrigger>
             <Menu />
           </SheetTrigger>
-          <SheetContent side="right" className="p-0 bg-black-800 pt-10 w-32">
-            <Button variant="link" className="text-black-50">
+          <SheetClose>
+          <SheetContent side="right" className="p-0 bg-primary/10 pt-10 w-32" >
+            <Button variant="link" className="text-primary" onClick={() => redirectPage('projects')}>
               PROJELER
             </Button>
-            <Button variant="link" className="text-black-50">
+            <Button variant="link" className="text-primary" onClick={() => redirectPage('about')}>
               HAKKIMIZDA
             </Button>
-            <Button variant="link" className="text-black-50">
+            <Button variant="link" className="text-primary" onClick={() => redirectPage('contact')}>
               İLETİŞİM
             </Button>
-            <LanguageToggle />
+            <div className="ml-2"><ModeToggle /></div>
+            {/* <LanguageToggle /> */}
           </SheetContent>
+          </SheetClose>
         </Sheet>
       </div>
     </>

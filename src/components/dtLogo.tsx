@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import '@/styles/logo.css'
+import { useAppSelector } from "@/redux/hooks";
+import { themeSelector } from "@/redux/themeSlice/themeSlice";
 
 // TypeScript ile props türünü tanımlayın
 interface MySVGProps {
@@ -8,10 +10,29 @@ interface MySVGProps {
   height: string
 }
 
-const DtLogo: React.FC<MySVGProps> = () => (
+interface SvgTheme {
+  fill: string;
+  stroke: string;
+  class: string;
+}
+
+
+const DtLogo: React.FC<MySVGProps> = () => {
+  const selectedTheme = useAppSelector(themeSelector)
+  const [theme, setTheme] = useState<SvgTheme>({fill:'black', stroke:'#000',class:'svg-elem-1'})
+  useEffect(() => {
+    if(selectedTheme.selectedTheme === 'dark'){
+      setTheme({fill:'white', stroke:'#fff',class:'svg-elem-2'})
+    }else{
+      setTheme({fill:'black', stroke:'#000', class:'svg-elem-1'})
+    }
+  }, [selectedTheme])
+  
+  return (
+  
     <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 225.000000 225.000000" preserveAspectRatio="xMidYMid meet">
 
-    <g transform="translate(0.000000,225.000000) scale(0.100000,-0.100000)" fill="white">
+    <g transform="translate(0.000000,225.000000) scale(0.100000,-0.100000)" fill={theme.fill}>
     <path d="M1013 2020 c-192 -20 -392 -119 -533 -262 -67 -68 -140 -170 -140
     -195 0 -11 9 -28 20 -38 27 -24 63 -13 87 27 37 62 121 155 185 203 83 63 224
     129 322 150 117 26 303 17 411 -19 125 -42 219 -100 315 -196 100 -98 159
@@ -21,10 +42,10 @@ const DtLogo: React.FC<MySVGProps> = () => (
     352 -47 0 -50 -11 -50 -204 l0 -180 -69 68 c-51 50 -76 68 -96 69 -34 0 -47
     -14 -47 -48 0 -21 24 -51 106 -134 l106 -106 0 -364 0 -364 103 6 c471 26 840
     419 839 897 0 186 -47 348 -144 497 -147 225 -386 372 -656 403 -95 11 -104
-    11 -209 0z" stroke="#ffff" strokeWidth="32" strokeLinecap="round" strokeLinejoin="round" className="svg-elem-1"></path>
+    11 -209 0z" stroke={theme.stroke} strokeWidth="32" strokeLinecap="round" strokeLinejoin="round" className={theme.class}></path>
     </g>
     </svg>
     
-);
+);}
 
 export default DtLogo;

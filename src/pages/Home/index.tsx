@@ -30,14 +30,14 @@ const Home = () => {
   
   return (
     <div className="h-screen bg-black-50">
-      <Navbar />
+      {/* <Navbar /> */}
       <div className="block">
          {/* <Carousel autoSlide={true} autoSlideInterval={3000}>
         {slides.map((image: string, index: number) => (
           <img key={index} src={image} alt="" />
         ))}
       </Carousel> */}
-      <Carousel slides={slides1} autoSlide={true}/>
+      <Carousel slides={slides1} autoSlide={false}/>
       </div>
       <div>
         <Separator className="mt-6"/>
