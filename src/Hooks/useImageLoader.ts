@@ -35,7 +35,7 @@ function useImageLoader(urls: string[]): ImageLoaderResponse {
         setImages(loadedImages);
         setLoading(false);
       })
-      .catch((err) => {
+      .catch((_err) => {
         setError('Resim yüklenirken bir hata oluştu.');
         setLoading(false);
       });
