@@ -9,12 +9,14 @@ interface CarouselProps {
   slides: Slide[];
   autoSlide?: boolean;
   autoSlideInterval?: number;
+  showFooter?: boolean
 }
 
 export default function Carousel({
   slides,
   autoSlide = false,
   autoSlideInterval = 3000,
+  showFooter = true
 }: CarouselProps) {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
 
@@ -63,7 +65,8 @@ const prevSlide = () => {
       <div className="hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] right-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer">
         <ChevronRight onClick={nextSlide} size={30} />
       </div>
-      <div className="flex justify-center">
+      {showFooter ? (
+        <div className="flex justify-center">
         {slides.map((_slide, slideIndex) => (
           <div
             key={slideIndex}
@@ -80,6 +83,7 @@ const prevSlide = () => {
           </div>
         ))}
       </div>
+      ): <></>}
     </div>
   );
 }
