@@ -14,7 +14,7 @@ const Home = () => {
       <div className="block">
         {/* images dizisi doluysa Carousel bileşenini kullanın */}
         {!newImageArr.loading && newImageArr.imageUrls.length > 0 ? (
-          <Carousel autoSlide={false} slides={newImageArr.imageUrls.map((img, index) => ({ url: img, alt: `Resim ${index + 1}` }))} />
+          <Carousel autoSlide={false} slides={ newImageArr.imageUrls.map((img, index) => ({ url: img, alt: `Resim ${index + 1}` }))} />
         ) : (
           // images dizisi boşsa veya yükleme sırasında, bir yükleme göstergesi görüntüleyin veya uygun bir şey yapın.
           newImageArr.loading ? (
