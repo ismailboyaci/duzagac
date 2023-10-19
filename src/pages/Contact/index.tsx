@@ -14,6 +14,21 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Textarea } from "@/components/ui/textarea";
 
+import { GoogleMap, useLoadScript, MarkerF } from '@react-google-maps/api';
+import { storage } from "@/services/firebase";
+import { useEffect, useState } from "react";
+import { ref, list, listAll, getDownloadURL } from "firebase/storage"
+import getImages from "@/Hooks/getImages";
+
+const mapContainerStyle = {
+  width: '90%',
+  height: '90%',
+};
+const center = {
+  lat: 38.757155,  // default latitude
+  lng: 30.542845, // default longitude
+};
+
 const formSchema = z.object({
   name: z.string().min(2, {
     message: "Username must be at least 2 characters.",
@@ -39,14 +54,31 @@ const Contact = () => {
       message: ""
     },
   });
+
+  const { isLoaded, loadError } = useLoadScript({
+    googleMapsApiKey: "AIzaSyBqeH_OJIe7W-ioJVAOgRDTLNWf_twLVfE"
+  });
+
+  if(loadError) console.log('error')
+
   function onSubmit(values: z.infer<typeof formSchema>) {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
     console.log(values);
   }
+
+  const [imageUrl, setImageUrl] = useState<any>();
+
+  const useGetImage = (name:string, total: number) =>{
+    return getImages(name, total);
+  }
+
+  const result = useGetImage('London', 3)
+  console.log(result)
+  
   return (
-    <div className="container my-24 mx-auto md:px-6">
-      <section className="mb-32">
+    <div className="w-full mb-24 mt-36 mx-auto md:px-6 absolute ">
+      <section className="mb-32 px-16">
         <div className="flex flex-wrap">
           <div className="mb-10 w-full shrink-0 grow-0 basis-auto md:mb-0 md:w-6/12 md:px-3 lg:px-6">
             <h2 className="mb-6 text-3xl font-bold">Bizimle İletişime Geçin</h2>
@@ -62,6 +94,17 @@ const Contact = () => {
             <p className="mb-2 text-neutral-500 dark:text-neutral-300">
               info@gmail.com
             </p>
+            <div className="w-full h-full hidden md:block">
+            {isLoaded ? (
+              <GoogleMap
+              mapContainerStyle={mapContainerStyle}
+            zoom={18}
+            center={center}
+          >
+            <MarkerF position={center} />
+          </GoogleMap>
+            ): (<></>)}
+            </div>
           </div>
           <div className="mb-12 w-full shrink-0 grow-0 basis-auto md:mb-0 md:w-6/12 md:px-3 lg:px-6">
             <Form {...form}>

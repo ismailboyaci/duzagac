@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight, CircleDot } from "lucide-react";
+import { useAppSelector } from "@/redux/hooks";
+import { themeSelector } from "@/redux/themeSlice/themeSlice";
 
 interface Slide {
   url: string;
@@ -19,18 +21,9 @@ export default function Carousel({
   showFooter = true
 }: CarouselProps) {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
+  const [color, setColor] = useState<string>('');
 
-//   const prevSlide = () => {
-//     const isFirstSlide = currentIndex === 0;
-//     const newIndex = isFirstSlide ? slides.length - 1 : currentIndex - 1;
-//     setCurrentIndex(newIndex);
-//   };
-
-//   const nextSlide = () => {
-//     const isLastSlide = currentIndex === slides.length - 1;
-//     const newIndex = isLastSlide ? 0 : currentIndex + 1;
-//     setCurrentIndex(newIndex);
-//   };
+  const selectedTheme = useAppSelector(themeSelector)
 
 const prevSlide = () => {
     setCurrentIndex((curr) => (curr === 0 ? slides.length - 1 : curr - 1));
@@ -46,13 +39,21 @@ const prevSlide = () => {
     return () => clearInterval(slideInterval);
   }, []);
 
+  useEffect(() => {
+    if(selectedTheme.selectedTheme === 'light') {
+      setColor('black')
+    }else {
+      setColor('white')
+    }
+  },[selectedTheme])
+
 
   const goToSlide = (slideIndex: number) => {
     setCurrentIndex(slideIndex);
   };
 
   return (
-    <div className="max-w-[100%] lg:h-[640px] h-[780px] w-full m-auto py-2 px-2 relative group">
+    <div className="max-w-[100%] lg:h-[640px] h-[320px] w-full m-auto py-2 px-2 relative group">
       <div
         style={{ backgroundImage: `url(${slides[currentIndex].url})` }}
         className="w-full h-full rounded-2xl bg-center bg-cover duration-500"
@@ -77,7 +78,7 @@ const prevSlide = () => {
               }}
           >
             <CircleDot
-              color="black"
+              color={color}
               size={`${currentIndex === slideIndex ? "18px" : "16px"}`}
             />
           </div>

@@ -17,7 +17,7 @@ interface SvgTheme {
 }
 
 
-const DtLogo: React.FC<MySVGProps> = () => {
+const DtLogo: React.FC<MySVGProps> = ({fill, width, height} : MySVGProps) => {
   const selectedTheme = useAppSelector(themeSelector)
   const [theme, setTheme] = useState<SvgTheme>({fill:'black', stroke:'#000',class:'svg-elem-1'})
   useEffect(() => {
@@ -30,7 +30,7 @@ const DtLogo: React.FC<MySVGProps> = () => {
   
   return (
   
-    <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 225.000000 225.000000" preserveAspectRatio="xMidYMid meet">
+    <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width={width} height={height} viewBox="0 0 225.000000 225.000000" preserveAspectRatio="xMidYMid meet">
 
     <g transform="translate(0.000000,225.000000) scale(0.100000,-0.100000)" fill={theme.fill}>
     <path d="M1013 2020 c-192 -20 -392 -119 -533 -262 -67 -68 -140 -170 -140
