@@ -15,9 +15,6 @@ import { useForm } from "react-hook-form";
 import { Textarea } from "@/components/ui/textarea";
 
 import { GoogleMap, useLoadScript, MarkerF } from '@react-google-maps/api';
-import { storage } from "@/services/firebase";
-import { useEffect, useState } from "react";
-import { ref, list, listAll, getDownloadURL } from "firebase/storage"
 import getImages from "@/Hooks/getImages";
 
 const mapContainerStyle = {
@@ -66,8 +63,6 @@ const Contact = () => {
     // ✅ This will be type-safe and validated.
     console.log(values);
   }
-
-  const [imageUrl, setImageUrl] = useState<any>();
 
   const useGetImage = (name:string, total: number) =>{
     return getImages(name, total);
