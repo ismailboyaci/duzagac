@@ -1,7 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import DtLogo from "./dtLogo";
 import MobileSidebar from "./mobile-sidebar";
-import { Button } from "./ui/button";
 
 const Navbar = () => {
   const navigate = useNavigate();

@@ -15,7 +15,7 @@ interface SvgTheme {
   class: string;
 }
 
-const DtSvg: React.FC<MySVGProps> = ({ fill, width, height }: MySVGProps) => {
+const DtSvg: React.FC<MySVGProps> = ({ width, height }: MySVGProps) => {
   const selectedTheme = useAppSelector(themeSelector);
   const [theme, setTheme] = useState<SvgTheme>({
     fill: "black",

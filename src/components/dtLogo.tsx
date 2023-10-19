@@ -17,7 +17,7 @@ interface SvgTheme {
 }
 
 
-const DtLogo: React.FC<MySVGProps> = ({fill, width, height} : MySVGProps) => {
+const DtLogo: React.FC<MySVGProps> = ({width, height} : MySVGProps) => {
   const selectedTheme = useAppSelector(themeSelector)
   const [theme, setTheme] = useState<SvgTheme>({fill:'black', stroke:'#000',class:'svg-elem-1'})
   useEffect(() => {
